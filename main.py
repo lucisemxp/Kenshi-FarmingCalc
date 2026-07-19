@@ -1,3 +1,5 @@
+import os
+import sys
 import customtkinter as ctk
 from backend import NU_CONSUME, consume_calc
 
@@ -8,7 +10,7 @@ class App(ctk.CTk):
         
         #UI congif
         self.geometry("800x800")
-        self.iconbitmap("app_icon.ico")
+        self.iconbitmap(resource_path("app_icon.ico"))
         self.title("Calculadora de Fazendas")
         self.resizable(False,False)
 
@@ -447,6 +449,15 @@ class App(ctk.CTk):
                     col += 1
 
             row += 1
-        
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+ 
 app=App()
 app.mainloop()
